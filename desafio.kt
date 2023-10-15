@@ -1,21 +1,46 @@
-// [Template no Kotlin Playground](https://pl.kotl.in/WcteahpyN)
+val inscritos = mutableListOf<Usuario>()
 
-enum class Nivel { BASICO, INTERMEDIARIO, DIFICIL }
+fun matricular(usuario: Usuario) {
+    inscritos.add(usuario)
+}
 
-class Usuario
+fun adicionarConteudo(conteudo: ConteudoEducacional) {
+    conteudos.add(conteudo)
+}
 
-data class ConteudoEducacional(var nome: String, val duracao: Int = 60)
+fun removerConteudo(conteudo: ConteudoEducacional) {
+    conteudos.remove(conteudo)
+}
 
-data class Formacao(val nome: String, var conteudos: List<ConteudoEducacional>) {
-
-    val inscritos = mutableListOf<Usuario>()
-    
-    fun matricular(usuario: Usuario) {
-        TODO("Utilize o parâmetro $usuario para simular uma matrícula (usar a lista de $inscritos).")
+fun listarConteudos() {
+    println("Conteúdos da formação $nome:")
+    for (conteudo in conteudos) {
+        println(conteudo.nome)
     }
 }
 
-fun main() {
-    TODO("Analise as classes modeladas para este domínio de aplicação e pense em formas de evoluí-las.")
-    TODO("Simule alguns cenários de teste. Para isso, crie alguns objetos usando as classes em questão.")
+fun listarInscritos() {
+    println("Inscritos na formação $nome:")
+    for (usuario in inscritos) {
+        println(usuario.nome)
+    }
 }
+}
+
+fun main() { val usuario = Usuario("João", Nivel.INTERMEDIARIO) val formacao = Formacao("Desenvolvimento de Software", mutableListOf())
+
+formacao.matricular(usuario)
+
+val conteudo1 = ConteudoEducacional("Introdução à Programação")
+val conteudo2 = ConteudoEducacional("Algoritmos")
+
+formacao.adicionarConteudo(conteudo1)
+formacao.adicionarConteudo(conteudo2)
+
+formacao.listarConteudos()
+
+formacao.listarInscritos()
+
+formacao.removerConteudo(conteudo2)
+
+formacao.listarConteudos()
